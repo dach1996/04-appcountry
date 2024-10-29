@@ -4,6 +4,7 @@ import { ByCapitalPageComponent } from './pages/by-capital-page/by-capital-page.
 import { ByCountryPageComponent } from './pages/by-country-page/by-country-page.component';
 import { ByRegionPageComponent } from './pages/by-region-page/by-region-page.component';
 import { CountryPageComponent } from './pages/country-page/country-page.component';
+import { CoutriesRoutingModule } from './countries-routing.module';
 
 
 
@@ -16,7 +17,7 @@ import { CountryPageComponent } from './pages/country-page/country-page.componen
   ],
   imports: [
     CommonModule,
-    CountriesModule
+    CoutriesRoutingModule
   ]
 })
 export class CountriesModule { }
