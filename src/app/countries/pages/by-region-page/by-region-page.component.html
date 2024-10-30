@@ -2,8 +2,10 @@
 <hr>
 
 <div class="row">
-    <div class="col">
-        <shared-search-box placeholder="Ingresa Región" (onValueEvent)="onValue($event)"></shared-search-box>
+    <div class="col text-center">
+        <button [ngClass]="{
+            'btn-outline-primary': region === selectedRegion 
+        }" class="btn" *ngFor="let region of regions" (click)="onValue(region)">{{region}}</button>
         <hr>
     </div>
 </div>
