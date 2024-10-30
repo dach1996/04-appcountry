@@ -1,10 +1,24 @@
-import { Component, ElementRef, EventEmitter, Input, Output, ViewChild, viewChildren } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, viewChildren } from '@angular/core';
+import { debounceTime, Subject } from 'rxjs';
 
 @Component({
   selector: 'shared-search-box',
   templateUrl: './searchBox.component.html',
 })
-export class SearchBoxComponent {
+export class SearchBoxComponent implements OnInit {
+  ngOnInit(): void {
+    this.onDeboce
+      .pipe(debounceTime(300))
+      .subscribe(
+        res => {
+          console.log(res);
+
+          this.onValueEvent.emit(res);
+        }
+      )
+  }
+
+  private onDeboce: Subject<string> = new Subject<string>();
 
   @ViewChild("txtInput")
   public search!: ElementRef<HTMLInputElement>;
@@ -15,8 +29,8 @@ export class SearchBoxComponent {
   @Input()
   public placeholder: string = '';
 
-  onValue(): void {
-    console.log(this.search.nativeElement.value)
-    this.onValueEvent.emit(this.search.nativeElement.value);
+  onValue(term: string): void {
+
+    this.onDeboce.next(term);
   }
 }
